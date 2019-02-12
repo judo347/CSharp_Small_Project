@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ITEMCATALOG>
+  <Item>
+    <Name>Big Black Perl</Name>
+    <ID>1</ID>
+  </Item>
+  <Item>
+    <Name>White Power Staff</Name>
+    <ID>2</ID>
+  </Item>
+  <Item>
+    <Name>Yellow Slim Eyes Potion</Name>
+    <ID>3</ID>
+  </Item>
+  <Item>
+    <Name>White Potato Gloves</Name>
+    <ID>4</ID>
+  </Item>
+</ITEMCATALOG>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using ItemSystemBase.ItemSystem;
 
 namespace ItemSystemBase.FileHandler
@@ -16,11 +17,39 @@ namespace ItemSystemBase.FileHandler
 			this.assetManager = assetManager;
 		}
 
+        /** Loads all items from the xml file and returns an item array with all items. */
 		public Item[] loadAllItems()
 		{
-			return null; //TODO TODO
+            //Load the xml file containing all items.
+            XmlDocument allItemsFileXml = new XmlDocument();
+            allItemsFileXml.Load(assetManager.getAllItemsFilePath());
+
+            //Should be a list of all items in xml format
+            XmlNodeList allXmlItems = allItemsFileXml.DocumentElement.ChildNodes;
+            //Console.WriteLine(allXmlItems.Count); //Number of items/elements in file.
+
+            //Create and fill array of items
+            Item[] allItems = new Item[allXmlItems.Count];
+            for(int i = 0; i < allXmlItems.Count; i++)
+            {
+                allItems[i] = new Item(allXmlItems[i].ChildNodes[0].InnerText, int.Parse(allXmlItems[i].ChildNodes[1].InnerText));
+            }
+
+            /* MAY BE DELETED: Used for testing
+            foreach (XmlNode node in allXmlItems)
+            {
+                Console.Write("Item Name: " + node.ChildNodes[0].InnerText);
+                Console.WriteLine(" ID: " + node.ChildNodes[1].InnerText);
+            }*/
+
+            /* MAY BE DELETED: Used for testing
+            foreach (Item item in allItems)
+            {
+                Console.Write(item.id);
+                Console.WriteLine(item.name);
+            }*/
+
+            return allItems;
 		}
-
-
 	}
 }

@@ -6,10 +6,49 @@ using System.Threading.Tasks;
 
 namespace ItemSystemBase.ItemSystem
 {
-	class Inventory
-	{
-		InventorySlot[] slotsArray = new InventorySlot[GameInfo.i_intentorySize];
+    class Inventory
+    {
+        private InventorySlot[] slotsArray = new InventorySlot[GameInfo.i_intentorySize];
 
+        public Inventory()
+        {
+            for(int i = 0; i < GameInfo.i_intentorySize; i++)
+            {
+                slotsArray[i] = new InventorySlot();
+            }
+        }
 
+        /** Adds the given item to the first empty slot. Returns true if action was successful. */
+        public Boolean addItem(Item item)
+        {
+            InventorySlot emptySlot = getFirstEmptySlot();
+
+            if(emptySlot != null)
+            {
+                emptySlot.addItem(item);
+                return true;
+            }
+
+            return false;
+        }
+
+        /** @Return the first empty slot. Returns null if non were found. */
+        private InventorySlot getFirstEmptySlot()
+        {
+            for(int i = 0; i < GameInfo.i_intentorySize; i++)
+            {
+                if (slotsArray[i].isFree)
+                    return slotsArray[i];
+            }
+
+            return null;
+        }
+
+        public int getSizeOfInventory() { return slotsArray.Length; }
+
+        public InventorySlot[] getSlotsArray()
+        {
+            return slotsArray;
+        }
 	}
 }
