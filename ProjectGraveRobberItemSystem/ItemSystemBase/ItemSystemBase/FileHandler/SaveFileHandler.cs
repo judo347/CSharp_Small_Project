@@ -51,5 +51,13 @@ namespace ItemSystemBase.FileHandler
 
             return allItems;
 		}
+
+        public Boolean saveInventory(Inventory inventory)
+        {
+            String saveString = inventory.getSaveString();
+
+            //TODO
+            throw new NotImplementedException();
+        }
 	}
 }

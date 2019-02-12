@@ -14,5 +14,8 @@ namespace ItemSystemBase
 		// INVENTORY SYSTEM SECTION
 		public static int i_intentorySize = 28;
 		public static int i_inventorySlotSize = 8;
+
+        //SAVE FILE HANDLER
+        public static char i_emptySlotChar = '_';
 	}
 }
