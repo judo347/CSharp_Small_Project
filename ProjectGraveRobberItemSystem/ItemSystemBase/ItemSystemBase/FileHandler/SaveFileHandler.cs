@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,12 +53,20 @@ namespace ItemSystemBase.FileHandler
             return allItems;
 		}
 
+		/** Saves the given inventory to the saveFile. */
         public Boolean saveInventory(Inventory inventory)
         {
             String saveString = inventory.getSaveString();
 
-            //TODO
-            throw new NotImplementedException();
+			if (File.Exists(assetManager.getSaveFilePath()))
+			{
+				System.IO.File.WriteAllText(assetManager.getSaveFilePath(), saveString);
+				return true;
+			}
+
+			return false;
         }
+
+		public string load() { return ""; }
 	}
 }

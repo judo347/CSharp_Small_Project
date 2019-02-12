@@ -15,7 +15,14 @@ namespace ItemSystemBase
 		{
             SaveFileHandler saveFileHandler = new SaveFileHandler(new AssetManager());
 
-            Item[] allItems = saveFileHandler.loadAllItems();
+			Inventory inventory = new Inventory();
+			Item item = new Item("Test item", 5);
+			inventory.addItem(item);
+			Item item2 = new Item("Testst", 1);
+			inventory.addItem(item2);
+
+			saveFileHandler.saveInventory(inventory);
+
 			Console.ReadLine();
 		}
 	}

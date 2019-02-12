@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FileHandler\Files\allItems.xml" />
+    <Content Include="FileHandler\Files\saveFile.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
