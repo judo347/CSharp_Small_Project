@@ -67,6 +67,25 @@ namespace ItemSystemBase.FileHandler
 			return false;
         }
 
-		public string load() { return ""; }
+		/** Returns the inventory saved in the saveFile. */
+		public Inventory loadInventory()
+		{
+			string inventorySaveString = loadInventorySaveString();
+
+			throw new NotImplementedException();
+		}
+
+		/** Returns the inventory string saved in the saveFile. Will return null if action fails. */
+		private string loadInventorySaveString()
+		{
+			string inventoryString = null;
+
+			if (File.Exists(assetManager.getSaveFilePath()))
+			{
+				inventoryString = System.IO.File.ReadAllText(assetManager.getSaveFilePath());
+			}
+
+			return inventoryString;
+		}
 	}
 }
