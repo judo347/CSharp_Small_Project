@@ -44,18 +44,20 @@ namespace ItemSystemBase.ItemSystem
             return null;
         }
 
-        /** @returns the string used to save this inventory. */ //TODO WRITE TESTS FOR THIS FUNCTION
+        /** @returns the string used to save this inventory. */
         public String getSaveString()
         {
             String saveString = "";
 
-            for(int i = 0; i > slotsArray.Length; i++)
+            for(int i = 0; i < slotsArray.Length; i++)
             {
                 if (slotsArray[i].isFree)
-                    saveString += GameInfo.i_emptySlotChar;
+					saveString += GameInfo.i_emptySlotChar;
                 else
                     saveString += slotsArray[i].item.id;
             }
+
+			Console.WriteLine(saveString.Length);
 
             return saveString;
         }

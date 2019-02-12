@@ -54,5 +54,34 @@ namespace ItemSystemBaseTests.ItemSystem
 
             Assert.IsFalse(addStatus);
         }
-    }
+
+		[TestMethod]
+		public void getSaveString01()
+		{
+			Inventory inventory = new Inventory();
+			String saveString = inventory.getSaveString();
+
+			//Is the lengh of the string the same as number of inventory slots?
+			Assert.AreEqual(saveString.Length, GameInfo.i_intentorySize);
+
+			//Is all chars in the string the same as the charactor for EmptySlot?
+			char[] saveStringChars = saveString.ToCharArray();
+			for (int i = 0; i < saveString.Length; i++)
+				Assert.AreEqual(saveStringChars[i], GameInfo.i_emptySlotChar);
+		}
+
+		[TestMethod]
+		public void getSaveString02()
+		{
+			Inventory inventory = new Inventory();
+			Item item = new Item("Test Item", 5);
+			char five = '5';
+
+			inventory.addItem(item);
+			String saveString = inventory.getSaveString();
+			char[] saveStringChars = saveString.ToCharArray();
+
+			Assert.AreEqual(saveStringChars[0], five);
+		}
+	}
 }
