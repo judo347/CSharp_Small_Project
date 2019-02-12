@@ -71,6 +71,12 @@ namespace ItemSystemBase.FileHandler
 		public Inventory loadInventory()
 		{
 			string inventorySaveString = loadInventorySaveString();
+			char[] saveStringItems = inventorySaveString.ToCharArray();
+
+			Inventory inventory = new Inventory();
+
+			for()
+
 
 			throw new NotImplementedException();
 		}
