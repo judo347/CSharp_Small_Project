@@ -17,5 +17,6 @@ namespace ItemSystemBase
 
         //SAVE FILE HANDLER
         public static char i_emptySlotChar = '_';
+		public static char i_charItemSpacer = ',';
 	}
 }

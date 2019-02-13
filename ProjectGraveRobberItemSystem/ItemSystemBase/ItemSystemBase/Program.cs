@@ -17,11 +17,13 @@ namespace ItemSystemBase
 
 			Inventory inventory = new Inventory();
 			Item item = new Item("Test item", 5);
-			inventory.addItem(item);
 			Item item2 = new Item("Testst", 1);
+			inventory.addItem(item);
 			inventory.addItem(item2);
 
 			saveFileHandler.saveInventory(inventory);
+
+			Inventory loadedInv = saveFileHandler.loadInventory();
 
 			Console.ReadLine();
 		}

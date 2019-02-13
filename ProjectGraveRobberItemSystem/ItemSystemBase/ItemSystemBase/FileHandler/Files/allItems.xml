@@ -16,4 +16,8 @@
     <Name>White Potato Gloves</Name>
     <ID>4</ID>
   </Item>
+  <Item>
+    <Name>This is clearly a test item</Name>
+    <ID>5</ID>
+  </Item>
 </ITEMCATALOG>

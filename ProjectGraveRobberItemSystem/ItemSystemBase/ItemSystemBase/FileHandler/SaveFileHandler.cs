@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -70,15 +71,69 @@ namespace ItemSystemBase.FileHandler
 		/** Returns the inventory saved in the saveFile. */
 		public Inventory loadInventory()
 		{
+			//Get the char array that represents what needs to be loaded.
 			string inventorySaveString = loadInventorySaveString();
-			char[] saveStringItems = inventorySaveString.ToCharArray();
-
-			Inventory inventory = new Inventory();
-
-			for()
+			string[] saveStringItems = getSavesInventoryStrings();
 
 
-			throw new NotImplementedException();
+			//char[] saveStringItems = inventorySaveString.ToCharArray();
+
+			Item[] allItem = loadAllItems(); //All possible items in the game
+			InventorySlot[] finalInventorySlots = new InventorySlot[GameInfo.i_intentorySize];
+
+			//Does the lenght of the string match the wanted lengh/size of inventory?
+			if (saveStringItems.Length != finalInventorySlots.Length)
+				throw new ArgumentException();
+
+			//Convert the saveString into inventorySlots
+			for(int i = 0; i < saveStringItems.Length; i++)
+			{
+				Item itemToAdd = getItemFromId(saveStringItems[i], allItem);
+				finalInventorySlots[i] = new InventorySlot();
+
+				if(itemToAdd != null)
+					finalInventorySlots[i].addItem(itemToAdd);
+			}
+
+			return new Inventory(finalInventorySlots);
+		}
+
+		/** Returns the item matching the given id. Returns null if non is found or char is blank char. */
+		private Item getItemFromId(string id, Item[] allPossibleItems)
+		{
+			//If the id given is a blank char (no item)
+			if(id.Length == 1)
+				if (id[0] == GameInfo.i_emptySlotChar)
+					return null;
+
+			foreach (Item item in allPossibleItems)
+			{
+				if(int.Parse(id).Equals(item.id))
+				{
+					return new Item(item.name, item.id);
+				}
+			}
+
+			return null;
+		}
+
+		/** Return ... TODO*/
+		private string[] getSavesInventoryStrings()
+		{
+			string saveString = loadInventorySaveString();
+			string[] inventoryString = saveString.Split(GameInfo.i_charItemSpacer);
+
+
+			List<string> inventoryStrings = new List<string>();
+			
+			foreach (string s in inventoryString)
+			{
+				if (s.Length != 0)
+					inventoryStrings.Add(s);
+			}
+
+
+			return inventoryStrings.ToArray();
 		}
 
 		/** Returns the inventory string saved in the saveFile. Will return null if action fails. */

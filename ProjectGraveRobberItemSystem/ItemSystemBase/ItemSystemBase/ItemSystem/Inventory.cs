@@ -8,15 +8,27 @@ namespace ItemSystemBase.ItemSystem
 {
     class Inventory
     {
-        private InventorySlot[] slotsArray = new InventorySlot[GameInfo.i_intentorySize];
+		private InventorySlot[] slotsArray;
 
         public Inventory()
         {
-            for(int i = 0; i < GameInfo.i_intentorySize; i++)
+			slotsArray = new InventorySlot[GameInfo.i_intentorySize];
+
+
+			for (int i = 0; i < GameInfo.i_intentorySize; i++)
             {
                 slotsArray[i] = new InventorySlot();
             }
         }
+
+		public Inventory(InventorySlot[] inventoryItems)
+		{
+			//Does the given array match the size of the inventory
+			if (inventoryItems.Length != GameInfo.i_intentorySize)
+				throw new ArgumentException();
+
+			slotsArray = inventoryItems;
+		}
 
         /** Adds the given item to the first empty slot. Returns true if action was successful. */
         public Boolean addItem(Item item)
@@ -52,12 +64,10 @@ namespace ItemSystemBase.ItemSystem
             for(int i = 0; i < slotsArray.Length; i++)
             {
                 if (slotsArray[i].isFree)
-					saveString += GameInfo.i_emptySlotChar;
+					saveString += Convert.ToString(GameInfo.i_emptySlotChar) + Convert.ToString(GameInfo.i_charItemSpacer);
                 else
-                    saveString += slotsArray[i].item.id;
+                    saveString += slotsArray[i].item.id + Convert.ToString(GameInfo.i_charItemSpacer);
             }
-
-			Console.WriteLine(saveString.Length);
 
             return saveString;
         }
