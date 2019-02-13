@@ -117,12 +117,11 @@ namespace ItemSystemBase.FileHandler
 			return null;
 		}
 
-		/** Return ... TODO*/
+		/** Return string array where each element is an item-id. */
 		private string[] getSavesInventoryStrings()
 		{
 			string saveString = loadInventorySaveString();
 			string[] inventoryString = saveString.Split(GameInfo.i_charItemSpacer);
-
 
 			List<string> inventoryStrings = new List<string>();
 			
@@ -131,7 +130,6 @@ namespace ItemSystemBase.FileHandler
 				if (s.Length != 0)
 					inventoryStrings.Add(s);
 			}
-
 
 			return inventoryStrings.ToArray();
 		}

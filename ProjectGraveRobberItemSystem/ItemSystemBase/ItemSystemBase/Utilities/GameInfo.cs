@@ -8,9 +8,6 @@ namespace ItemSystemBase
 {
 	class GameInfo
 	{
-
-		// public static type name = value;
-
 		// INVENTORY SYSTEM SECTION
 		public static int i_intentorySize = 28;
 		public static int i_inventorySlotSize = 8;

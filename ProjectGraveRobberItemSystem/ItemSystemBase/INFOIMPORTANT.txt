@@ -6,3 +6,6 @@ When loading the inventory, allItems.xml (all items) are loaded into memory thro
 If/when there will be more propperties added to items, there is a lot of places to update: allItems.xml, Item.cs, and other places handling items.
 
 Paths for the files: in assetManager, the path for the files: allItems.xml and saveFile.txt, might not be handles in the most effective way.
+
+TODO:
+CLASS COMMENTS
