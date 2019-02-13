@@ -1,0 +1,6 @@
+Current problems/concerns with inventory/items implementation:
+If an item in the allItems.xml changes, more specificly if an id changes and does not match the same item anymore. Then if this id is in the inventory saved in the saveFile.xml, when loaded it will follow the id and become another item.
+
+When loading the inventory, allItems.xml (all items) are loaded into memory through the xml format. This might be a very intensive task when/if we get a lot of items.
+
+If/when there will be more propperties added to items, there is a lot of places to update: allItems.xml, Item.cs, and other places handling items.
