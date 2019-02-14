@@ -126,7 +126,7 @@ namespace ItemSystemBase.FileHandler
 		private string[] getSavesInventoryStrings()
 		{
 			string saveString = loadInventorySaveString();
-			string[] inventoryString = saveString.Split(GameInfo.i_charItemSpacer);
+			string[] inventoryString = saveString.Split(GameInfo.i_charItemSeparator);
 
 			List<string> inventoryStrings = new List<string>();
 			

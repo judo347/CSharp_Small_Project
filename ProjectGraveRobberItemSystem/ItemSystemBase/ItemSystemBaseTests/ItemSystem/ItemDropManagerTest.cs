@@ -11,12 +11,14 @@ namespace ItemSystemBaseTests.ItemSystem
 	public class ItemDropManagerTest
 	{
 
+		//TODO THESE FAIL BECAUSE WHEN LOADING ITEMS, IN ASSETMANAGER, THE CURRENTPATH IS NOT THE SAME FOR TEST AND BASE SOLUTION
 		[TestMethod]
 		public void constructor01()
 		{
 			ItemDropManager idm = new ItemDropManager();
 		}
 
+		//TODO THESE FAIL BECAUSE WHEN LOADING ITEMS, IN ASSETMANAGER, THE CURRENTPATH IS NOT THE SAME FOR TEST AND BASE SOLUTION
 		[TestMethod]
 		public void constructor02()
 		{

@@ -64,9 +64,9 @@ namespace ItemSystemBase.ItemSystem
             for(int i = 0; i < slotsArray.Length; i++)
             {
                 if (slotsArray[i].isFree)
-					saveString += Convert.ToString(GameInfo.i_emptySlotChar) + Convert.ToString(GameInfo.i_charItemSpacer);
+					saveString += Convert.ToString(GameInfo.i_emptySlotChar) + Convert.ToString(GameInfo.i_charItemSeparator);
                 else
-                    saveString += slotsArray[i].item.id + Convert.ToString(GameInfo.i_charItemSpacer);
+                    saveString += slotsArray[i].item.id + Convert.ToString(GameInfo.i_charItemSeparator);
             }
 
             return saveString;

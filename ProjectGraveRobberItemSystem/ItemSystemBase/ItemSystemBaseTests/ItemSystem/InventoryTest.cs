@@ -61,13 +61,21 @@ namespace ItemSystemBaseTests.ItemSystem
 			Inventory inventory = new Inventory();
 			String saveString = inventory.getSaveString();
 
-			//Is the lengh of the string the same as number of inventory slots?
-			Assert.AreEqual(saveString.Length, GameInfo.i_intentorySize);
+			//Is the number of slots in the string the same as number of inventory slots?
+			//Done by counting the separator char
+			int seperatorCount = 0;
+			foreach (char c in saveString.ToCharArray())
+			{
+				if (c.Equals(GameInfo.i_charItemSeparator))
+					seperatorCount++;
+			}
+			Assert.AreEqual(seperatorCount, GameInfo.i_intentorySize);
 
-			//Is all chars in the string the same as the charactor for EmptySlot?
+			//Is all chars in the string the same as the charactor for EmptySlot (skipping separator chars)?
 			char[] saveStringChars = saveString.ToCharArray();
 			for (int i = 0; i < saveString.Length; i++)
-				Assert.AreEqual(saveStringChars[i], GameInfo.i_emptySlotChar);
+				if(!saveStringChars[i].Equals(GameInfo.i_charItemSeparator))
+					Assert.AreEqual(saveStringChars[i], GameInfo.i_emptySlotChar);
 		}
 
 		[TestMethod]
