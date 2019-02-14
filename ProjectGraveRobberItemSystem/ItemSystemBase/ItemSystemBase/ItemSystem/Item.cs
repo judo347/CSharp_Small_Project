@@ -16,5 +16,11 @@ namespace ItemSystemBase.ItemSystem
 			this.name = name;
 			this.id = id;
 		}
+
+		/** Returns a copy of this item. */
+		public Item copy()
+		{
+			return new Item(this.name, this.id);
+		}
 	}
 }

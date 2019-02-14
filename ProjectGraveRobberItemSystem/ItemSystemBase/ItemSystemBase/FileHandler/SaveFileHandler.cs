@@ -19,8 +19,13 @@ namespace ItemSystemBase.FileHandler
 			this.assetManager = assetManager;
 		}
 
-        /** Loads all items from the xml file and returns an item array with all items. */
-		public Item[] loadAllItems()
+		public SaveFileHandler()
+		{
+			this.assetManager = new AssetManager();
+		}
+
+		/** Loads all items from the xml file and returns an item array with all items. */
+		public Item[] loadAllIngameItems()
 		{
             //Load the xml file containing all items.
             XmlDocument allItemsFileXml = new XmlDocument();
@@ -78,7 +83,7 @@ namespace ItemSystemBase.FileHandler
 
 			//char[] saveStringItems = inventorySaveString.ToCharArray();
 
-			Item[] allItem = loadAllItems(); //All possible items in the game
+			Item[] allItem = loadAllIngameItems(); //All possible items in the game
 			InventorySlot[] finalInventorySlots = new InventorySlot[GameInfo.i_intentorySize];
 
 			//Does the lenght of the string match the wanted lengh/size of inventory?

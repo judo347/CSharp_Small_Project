@@ -26,6 +26,8 @@ namespace ItemSystemBase
 			Inventory loadedInv = saveFileHandler.loadInventory();
 
 			Console.ReadLine();
+
+			ItemDropManager idm = new ItemDropManager(new SaveFileHandler());
 		}
 	}
 }

@@ -51,8 +51,8 @@
   <ItemGroup>
     <Compile Include="ItemSystem\InventorySlotTest.cs" />
     <Compile Include="ItemSystem\InventoryTest.cs" />
+    <Compile Include="ItemSystem\ItemDropManagerTest.cs" />
     <Compile Include="ItemSystem\ItemTest.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
