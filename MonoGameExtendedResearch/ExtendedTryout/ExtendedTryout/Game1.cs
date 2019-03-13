@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using GeonBit.UI;
 using GeonBit.UI.Entities;
+using ExtendedTryout.UI;
 
 namespace ExtendedTryout
 {
@@ -13,6 +14,7 @@ namespace ExtendedTryout
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
+		UIManager uiMan;
 
 		public Game1()
 		{
@@ -31,9 +33,7 @@ namespace ExtendedTryout
 			// TODO: Add your initialization logic here
 
 			// GeonBit.UI: Init the UI manager using the "hd" built-in theme
-			UserInterface.Initialize(Content, BuiltinThemes.hd);
-
-			// TODO TODO TODO GeonBit.UI: tbd create your GUI layouts here..
+			uiMan = new UIManager(Content);
 
 			base.Initialize();
 		}
@@ -73,6 +73,14 @@ namespace ExtendedTryout
 
 			// GeonBit.UIL update UI manager
 			UserInterface.Active.Update(gameTime);
+
+			double totalSec = gameTime.TotalGameTime.TotalSeconds;
+
+			if (totalSec > 2)
+				uiMan.toggleInventory();
+
+			if(totalSec > 5)
+				uiMan.toggleInventory();
 
 			base.Update(gameTime);
 		}
