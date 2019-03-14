@@ -1,5 +1,6 @@
 ﻿using GeonBit.UI;
 using GeonBit.UI.Entities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
@@ -12,41 +13,43 @@ namespace ExtendedTryout.UI
 	class UIManager
 	{
 		ContentManager content;
-		Panel inventory = new Panel();
-		bool inventoryActive = false;
-		//Panel basePanel = new Panel();
+		RichParagraph rich1;
+		RichParagraph rich2;
 
 		public UIManager(ContentManager content)
 		{
 			this.content = content;
 			UserInterface.Initialize(content, BuiltinThemes.hd);
-
+			UserInterface.Active.ShowCursor = false;
 			initialize();
 		}
 
 		private void initialize()
 		{
 			Panel panel = new Panel();
-			panel.Anchor = Anchor.CenterLeft;
-			//GeonBit.UI.Entities.
-			panel.AddChild(new Button("Always there"));
+			panel.Anchor = Anchor.TopLeft;
+			panel.MaxSize = new Vector2(220,110);
+
+			rich1 = new RichParagraph();
+			rich2 = new RichParagraph();
+
+			panel.AddChild(rich1);
+			panel.AddChild(rich2);
 
 			UserInterface.Active.Root.AddChild(panel);
 
-			inventory.Anchor = Anchor.CenterRight;
-			Button invButton = new Button("Base ui");
-			inventory.AddChild(invButton);
+			/*
+			ProgressBar progress = new ProgressBar(0, 100);
+			progress.Value = 50;
+
+			panel.AddChild(progress);*/
+
 		}
 
-		public void toggleInventory()
+		public void updateText(int kills, int hp)
 		{
-			if (inventoryActive)
-			{
-				UserInterface.Active.Root.RemoveChild(inventory);
-			}
-			else
-				UserInterface.Active.Root.AddChild(inventory);
+			rich1.Text = "Kills: " + kills.ToString();
+			rich2.Text = "Health: " + hp.ToString();
 		}
-
 	}
 }

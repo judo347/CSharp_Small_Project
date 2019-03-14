@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using GeonBit.UI;
 using GeonBit.UI.Entities;
 using ExtendedTryout.UI;
+using ExtendedTryout.WorldFolder;
 
 namespace ExtendedTryout
 {
@@ -14,12 +15,15 @@ namespace ExtendedTryout
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
-		UIManager uiMan;
+		UIManager uiMan; 
+		World world;
 
 		public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
+			graphics.PreferredBackBufferWidth = GameSettings.g_screenwidth;
+			graphics.PreferredBackBufferHeight = GameSettings.g_screenheight;
 		}
 
 		/// <summary>
@@ -46,6 +50,7 @@ namespace ExtendedTryout
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
+			world = new World(GraphicsDevice, Content);
 
 			// TODO: use this.Content to load your game content here
 		}
@@ -66,6 +71,7 @@ namespace ExtendedTryout
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update(GameTime gameTime)
 		{
+
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
@@ -74,13 +80,9 @@ namespace ExtendedTryout
 			// GeonBit.UIL update UI manager
 			UserInterface.Active.Update(gameTime);
 
-			double totalSec = gameTime.TotalGameTime.TotalSeconds;
+			world.Update(gameTime);
 
-			if (totalSec > 2)
-				uiMan.toggleInventory();
-
-			if(totalSec > 5)
-				uiMan.toggleInventory();
+			uiMan.updateText(world.getPlayerKills(), world.getPlayerHealth()); //TODO PLAYER KILLS
 
 			base.Update(gameTime);
 		}
@@ -96,8 +98,13 @@ namespace ExtendedTryout
 			// TODO: Add your drawing code here
 
 			// GeonBit.UI: draw UI using the spriteBatch you created above
-			UserInterface.Active.Draw(spriteBatch);
 
+			spriteBatch.Begin();
+			world.Draw(gameTime, spriteBatch);
+			spriteBatch.End();
+
+			UserInterface.Active.Draw(spriteBatch);
+			
 			base.Draw(gameTime);
 		}
 	}
